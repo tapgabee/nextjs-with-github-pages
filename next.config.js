@@ -9,6 +9,6 @@ module.exports = {
   // Image Optimization using Next.js' default loader is not compatible with `next export`.
   images: {
     loader: 'imgix',
-    path: '/',
+    path: 'https://noop/',
   },
 };

@@ -4,6 +4,6 @@ module.exports = {
   reactStrictMode: true,
 
   assetPrefix: isProd
-    ? 'https://cdn.statically.io/gh/tapgabee/tapgabee.github.io/nextjs-with-github-pages/'
+    ? 'https://cdn.statically.io/gh/tapgabee/nextjs-with-github-pages/gh-pages/'
     : '',
 };

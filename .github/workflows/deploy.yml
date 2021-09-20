@@ -16,17 +16,15 @@ jobs:
         node-version: [14.x]
 
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout 🛎️
+        uses: actions/checkout@v2
 
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v1
         with:
           node-version: ${{ matrix.node-version }}
 
-      - name: Use NPM 7
-        run: npm i -g npm@latest
-
-      - name: Cache dependencies
+      - name: Cache dependencies 💾
         uses: actions/cache@v2
         with:
           path: ~/.npm
@@ -35,16 +33,18 @@ jobs:
             ${{ runner.OS }}-node-
             ${{ runner.OS }}-
 
-      - name: NPM install
+      - name: NPM install 🧲
         run: npm install
 
-      - name: Build
+      - name: Build 🛠
         run: |
           npm run build
           npm run export
 
-      - name: Deploy
-        uses: peaceiris/actions-gh-pages@v3
+      - name: Deploy 🚀
+        uses: JamesIves/github-pages-deploy-action@3.6.2
         with:
-          deploy_key: ${{ secrets.ACTIONS_SECRET_KEY }}
-          publish_dir: ./out
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BRANCH: gh-pages # The branch the action should deploy to.
+          FOLDER: src/out # The folder the action should deploy.
+          CLEAN: true # Automatically remove deleted files from the deploy branch
